@@ -48,6 +48,11 @@ describe("asepriteLiveSync integration", () => {
       await waitFor(async () => await exists(playerPng));
       await waitFor(async () => await exists(playerJson));
 
+      const playerData = JSON.parse(await fs.readFile(playerJson, "utf8")) as {
+        frames: Array<{ filename: string }>;
+      };
+      expect(playerData.frames[0]?.filename).toBe("0");
+
       const oldMtimeMs = (await fs.stat(playerPng)).mtimeMs;
       await fs.writeFile(
         path.join(root, "src-assets/aseprite/characters/player.aseprite"),
@@ -157,6 +162,7 @@ function makeMockAsepriteScript(): string {
     'const input = valueOf("-b") ?? "";',
     'const sheetPath = valueOf("--sheet");',
     'const dataPath = valueOf("--data");',
+    'const filenameFormat = valueOf("--filename-format");',
     "",
     "if (!sheetPath) {",
     '  console.error("--sheet is required");',
@@ -169,7 +175,7 @@ function makeMockAsepriteScript(): string {
     "if (dataPath) {",
     '  const hasTags = !input.toLowerCase().includes("notags");',
     "  const payload = {",
-    "    frames: [],",
+    "    frames: [{ filename: filenameFormat === \"{frame}\" ? \"0\" : `${path.basename(input)} 0.aseprite` }],",
     "    meta: {",
     '      frameTags: hasTags ? [{ name: "idle", from: 0, to: 0, direction: "forward" }] : []',
     "    }",

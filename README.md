@@ -154,6 +154,7 @@ export default defineAsepriteLiveSyncConfig({
   - `auto`: generates PNG + JSON first, then removes JSON if `meta.frameTags` is empty
   - `png-only`: always generate PNG only
   - `png-json`: always generate PNG + JSON (`--format json-array`)
+  - JSON frame names use Aseprite's `{frame}` format (`"0"`, `"1"`, ...), compatible with Phaser's Aseprite atlas loader
 - `preserveStructure`
   - Preserve input subdirectory structure in output
   - Default: `true`

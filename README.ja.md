@@ -156,6 +156,7 @@ export default defineAsepriteLiveSyncConfig({
   - `auto`: まずPNG + JSONを生成し、`meta.frameTags` が空ならJSONを削除
   - `png-only`: 常にPNGのみ生成
   - `png-json`: 常にPNG + JSON生成（`--format json-array`）
+  - JSONのフレーム名にはAsepriteの`{frame}`形式（`"0"`, `"1"`, ...）を使用し、PhaserのAseprite atlas loaderと互換
 - `preserveStructure`
   - 入力サブフォルダを出力側でも維持
   - デフォルト: `true`

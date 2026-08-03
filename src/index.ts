@@ -407,6 +407,8 @@ async function exportOneFile(args: {
     outputPaths.jsonPath,
     "--format",
     "json-array",
+    "--filename-format",
+    "{frame}",
     "--list-tags",
   ]);
 
