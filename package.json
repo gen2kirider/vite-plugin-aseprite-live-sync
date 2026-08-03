@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-aseprite-live-sync",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Vite plugin that watches Aseprite files and auto-exports PNG/JSON via Aseprite CLI during development.",
   "type": "module",
   "main": "./dist/index.cjs",
